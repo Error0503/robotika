@@ -88,6 +88,26 @@ void gameLogic(Directions direction)
     fruitY = -1;
     tailLength++;
   }
+
+  if (direction != NONE)
+  {
+    switch (direction)
+    {
+    case LEFT:
+      tail = addHead(tail, playerX + 1, playerY);
+      break;
+    case RIGHT:
+      tail = addHead(tail, playerX - 1, playerY);
+      break;
+    case DOWN:
+      tail = addHead(tail, playerX, playerY + 1);
+      break;
+    case UP:
+      tail = addHead(tail, playerX, playerY - 1);
+      break;
+    }
+    removeLast(tail);
+  }
 }
 
 void spawnFruit()

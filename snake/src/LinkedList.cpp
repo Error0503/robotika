@@ -1,4 +1,5 @@
 #include "LinkedList.h"
+
 #include <Arduino.h>
 
 Node *LinkedList(int len)
@@ -33,24 +34,42 @@ Node *addHead(Node *head, int x, int y)
     newHead->next = head->next;
     newHead->x = x;
     newHead->y = y;
-    free(head);
     return newHead;
 }
 
 void removeLast(Node *head)
 {
-    Node* prev = head;
-    for (Node* current = head->next; current->next != NULL; current = current->next) {
-        if (current->next == NULL) {
+    Node *prev = head;
+    for (Node *current = head->next; true; current = current->next)
+    {
+        if (current->next == NULL)
+        {
             prev->next = NULL;
             free(current);
+            return;
         }
+        prev = current;
     }
 }
 
-bool contains(Node* head, int x, int y) {
-    for (Node* current = head; current->next != NULL; current = current->next) {
-        if (current->x == x && current->y == y) return true;
+bool contains(Node *head, int x, int y)
+{
+    for (Node *current = head; current->next != NULL; current = current->next)
+    {
+        if (current->x == x && current->y == y)
+            return true;
     }
     return false;
+}
+
+void printLinkedList(Node *head)
+{
+    for (Node *n = head; n->next != NULL; n = n->next)
+    {
+        Serial.print("x:");
+        Serial.print(n->x);
+        Serial.print(", y:");
+        Serial.println(n->y);
+    }
+    Serial.println();
 }

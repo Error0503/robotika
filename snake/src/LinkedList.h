@@ -17,5 +17,6 @@ Node *LinkedList(int len);
 
 Node* addHead(Node* head, int x, int y);
 void removeLast(Node* head);
+void printLinkedList(Node* head);
 
 #endif
