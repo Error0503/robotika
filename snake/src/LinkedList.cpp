@@ -31,7 +31,7 @@ Node *LinkedList(int len)
 Node *addHead(Node *head, int x, int y)
 {
     Node *newHead = (Node *)malloc(NODE_SIZE);
-    newHead->next = head->next;
+    newHead->next = head;
     newHead->x = x;
     newHead->y = y;
     return newHead;
