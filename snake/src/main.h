@@ -5,6 +5,7 @@
 #include <LedControl.h>
 #include "LinkedList.h"
 #include "joystick.h"
+#include "animation.h"
 
 enum Directions
 {

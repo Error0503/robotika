@@ -20,6 +20,8 @@ void setup()
     n->y = playerY - i;
     i++;
   }
+
+  // playAnimation(lc, 15, 100, testAnimation);
 }
 
 void loop()
