@@ -58,57 +58,43 @@ Directions input()
 
 void gameLogic(Directions direction)
 {
-  switch (direction)
-  {
-  case LEFT:
-    playerX--;
-    break;
-  case RIGHT:
-    playerX++;
-    break;
-  case DOWN:
-    playerY--;
-    break;
-  case UP:
-    playerY++;
-    break;
-  case NONE:
-    break;
-  }
-
-  playerX = playerX % 8;
-  playerY = playerY % 8;
-
-  if (playerX == -1)
-    playerX = 7;
-  if (playerY == -1)
-    playerY = 7;
-
-  if (playerX == fruitX && playerY == fruitY)
-  {
-    fruitX = -1;
-    fruitY = -1;
-    tailLength++;
-  }
-
   if (direction != NONE)
   {
+    tail = addHead(tail, playerX, playerY);
+    if (playerX == fruitX && playerY == fruitY)
+    {
+      fruitX = -1;
+      fruitY = -1;
+      tailLength++;
+    }
+    else
+    {
+      removeLast(tail);
+    }
+
     switch (direction)
     {
     case LEFT:
-      tail = addHead(tail, playerX + 1, playerY);
+      playerX--;
       break;
     case RIGHT:
-      tail = addHead(tail, playerX - 1, playerY);
+      playerX++;
       break;
     case DOWN:
-      tail = addHead(tail, playerX, playerY + 1);
+      playerY--;
       break;
     case UP:
-      tail = addHead(tail, playerX, playerY - 1);
+      playerY++;
       break;
+
+      playerX = playerX % 8;
+      playerY = playerY % 8;
+
+      if (playerX == -1)
+        playerX = 7;
+      if (playerY == -1)
+        playerY = 7;
     }
-    removeLast(tail);
   }
 }
 
