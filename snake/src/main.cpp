@@ -32,7 +32,9 @@ void loop()
     spawnFruit();
     render();
     delay(200);
-  } else {
+  }
+  else
+  {
     lc.clearDisplay(0);
   }
 }
@@ -44,67 +46,68 @@ Directions input()
 
   if (axisX < 0)
   {
+    lastDirection = LEFT;
     return LEFT;
   }
   if (axisX > 0)
   {
+    lastDirection = RIGHT;
     return RIGHT;
   }
   if (axisY < 0)
   {
+    lastDirection = DOWN;
     return DOWN;
   }
   if (axisY > 0)
   {
+    lastDirection = UP;
     return UP;
   }
-  return NONE;
+  return lastDirection;
 }
 
 void gameLogic(Directions direction)
 {
-  if (direction != NONE)
+  tail = addHead(tail, playerX, playerY);
+  if (playerX == fruitX && playerY == fruitY)
   {
-    tail = addHead(tail, playerX, playerY);
-    if (playerX == fruitX && playerY == fruitY)
-    {
-      fruitX = -1;
-      fruitY = -1;
-      tailLength++;
-    }
-    else
-    {
-      removeLast(tail);
-    }
+    fruitX = -1;
+    fruitY = -1;
+    tailLength++;
+  }
+  else
+  {
+    removeLast(tail);
+  }
 
-    switch (direction)
-    {
-    case LEFT:
-      playerX--;
-      break;
-    case RIGHT:
-      playerX++;
-      break;
-    case DOWN:
-      playerY--;
-      break;
-    case UP:
-      playerY++;
-      break;
-    }
+  switch (direction)
+  {
+  case LEFT:
+    playerX--;
+    break;
+  case RIGHT:
+    playerX++;
+    break;
+  case DOWN:
+    playerY--;
+    break;
+  case UP:
+    playerY++;
+    break;
+  }
 
-    playerX = playerX % 8;
-    playerY = playerY % 8;
+  playerX = playerX % 8;
+  playerY = playerY % 8;
 
-    if (playerX == -1)
-      playerX = 7;
-    if (playerY == -1)
-      playerY = 7;
+  if (playerX == -1)
+    playerX = 7;
+  if (playerY == -1)
+    playerY = 7;
 
-    if (contains(tail, playerX, playerY))
-    {
-      isRunning = false;
-    }
+  if (contains(tail, playerX, playerY))
+  {
+    isRunning = false;
   }
 }
 

@@ -24,6 +24,8 @@ int tailLength = 3;
 
 bool isRunning = true;
 
+Directions lastDirection = NONE;
+
 Node *tail = LinkedList(tailLength);
 
 /*
