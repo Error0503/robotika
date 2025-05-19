@@ -22,6 +22,8 @@ int fruitX = -1;
 int fruitY = -1;
 int tailLength = 3;
 
+bool isRunning = true;
+
 Node *tail = LinkedList(tailLength);
 
 /*

@@ -26,10 +26,15 @@ void setup()
 
 void loop()
 {
-  gameLogic(input());
-  spawnFruit();
-  render();
-  delay(200);
+  if (isRunning)
+  {
+    gameLogic(input());
+    spawnFruit();
+    render();
+    delay(200);
+  } else {
+    lc.clearDisplay(0);
+  }
 }
 
 Directions input()
@@ -86,14 +91,19 @@ void gameLogic(Directions direction)
     case UP:
       playerY++;
       break;
+    }
 
-      playerX = playerX % 8;
-      playerY = playerY % 8;
+    playerX = playerX % 8;
+    playerY = playerY % 8;
 
-      if (playerX == -1)
-        playerX = 7;
-      if (playerY == -1)
-        playerY = 7;
+    if (playerX == -1)
+      playerX = 7;
+    if (playerY == -1)
+      playerY = 7;
+
+    if (contains(tail, playerX, playerY))
+    {
+      isRunning = false;
     }
   }
 }
